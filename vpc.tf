@@ -21,3 +21,26 @@ resource "aws_subnet" "this" {
   availability_zone = each.value[1]
   tags              = merge(local.common_tags, { Name = each.value[2] })
 }
+
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.this.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.this.id
+  }
+
+  tags = merge(local.common_tags, { Name = "Pub-Route-Table-terraform-application-auto-scaling" })
+}
+
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.this.id
+  tags   = merge(local.common_tags, { Name = "Pvt-Route-Table-terraform-application-auto-scaling" })
+}
+
+resource "aws_route_table_association" "this" {
+  for_each = local.subnet_ids
+
+  subnet_id      = each.value
+  route_table_id = substr(each.key, 0, 3) == "Pub" ? aws_route_table.public.id : aws_route_table.private.id
+}
