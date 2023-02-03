@@ -29,3 +29,6 @@ override.tf.json
 # example: *tfplan*
 
 *plan*
+
+passo-a-passo.txt
+
