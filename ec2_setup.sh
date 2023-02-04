@@ -7,4 +7,4 @@ service httpd start
 
 sudo apt-get install -y stress-ng
 
-# sudo stress-ng --cpu 32 --timeout 180 --metrics-brief
+# sudo stress-ng --cpu 32 --timeout 600 --metrics-brief

@@ -7,7 +7,7 @@ resource "aws_cloudwatch_metric_alarm" "up" {
   namespace           = "AWS/EC2"
   period              = 60 #for test - 120 segundos is the correct
   statistic           = "Average"
-  threshold           = 30 #for test - 80% is the correct
+  threshold           = 55 #for test - 80% is the correct
 
   dimensions = {
     "AutoScalingGroupName" = aws_autoscaling_group.this.name
@@ -26,7 +26,7 @@ resource "aws_cloudwatch_metric_alarm" "down" {
   namespace           = "AWS/EC2"
   period              = 60
   statistic           = "Average"
-  threshold           = 40
+  threshold           = 30
 
   dimensions = {
     "AutoScalingGroupName" = aws_autoscaling_group.this.name
