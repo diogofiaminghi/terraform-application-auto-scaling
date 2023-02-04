@@ -2,6 +2,7 @@
 sudo apt-get update
 sudo apt-get install -y apache2
 echo 'Hello from Terraform-application-auto-scaling by Diogo Fiaminghi' > /var/www/html/index.html
+
 service httpd start
 
 sudo apt-get install -y stress-ng
