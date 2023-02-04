@@ -127,3 +127,32 @@ resource "aws_security_group" "autoscaling" {
 
   tags = merge(local.common_tags, { Name = "SG-AutoScaling-terraform-application-auto-scaling" })
 }
+
+resource "aws_security_group" "jenkins" {
+  name        = "Jenkins"
+  description = "Allow incoming connections to Jenkins machine"
+  vpc_id      = aws_vpc.this.id
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [aws_vpc.this.cidr_block]
+  }
+
+  ingress {
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
+    cidr_blocks = [aws_vpc.this.cidr_block]
+  }
+
+  egress {
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    security_groups = [aws_security_group.web.id]
+  }
+
+  tags = merge(local.common_tags, { Name = "Jenkins-Machine-terraform-application-auto-scaling" })
+}
