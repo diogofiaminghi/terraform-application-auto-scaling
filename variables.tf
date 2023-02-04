@@ -19,5 +19,5 @@ variable "instance_type" {
 variable "instance_key_name" {
   type        = string
   description = ""
-  default     = "terraform-application-auto-scaling.pem"
+  default     = "terraform-application-auto-scaling"
 }
