@@ -9,18 +9,18 @@
 </h2>
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/diogofiaminghi/terraform-project-01?color=%2304D361">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/diogofiaminghi/terraform-application-auto-scaling?color=%2304D361">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/diogofiaminghi/terraform-project-01">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/diogofiaminghi/terraform-application-auto-scaling">
 
-   <a href="https://github.com/diogofiaminghi/terraform-project-01/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/diogofiaminghi/terraform-project-01">
+   <a href="https://github.com/diogofiaminghi/terraform-application-auto-scaling/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/diogofiaminghi/terraform-application-auto-scaling">
   </a>
     
    <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
 	
-   <a href="https://github.com/diogofiaminghi/terraform-project-01/stargazers">
-    <img alt="Stargazers" src="https://img.shields.io/github/stars/diogofiaminghi/terraform-project-01?style=social">
+   <a href="https://github.com/diogofiaminghi/terraform-application-auto-scaling/stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/diogofiaminghi/terraform-application-auto-scaling?style=social">
   </a>
 </p>
 
@@ -32,6 +32,7 @@
 <p align="center">
  <a href="#description">Description</a> •
  <a href="#pre-requisites">Pre-requisites</a> • 
+ <a href="#solution-architecture">Solution Architecture</a> • 
  <a href="#how-it-works">How it works</a> • 
  <a href="#tech-stack">Tech Stack</a> • 
  <a href="#author">Author</a> • 
@@ -42,7 +43,7 @@
 
 ## Description
 
-This project provisions a VPC and an EC2 instance on AWS through Terraform. In this project, the terraform.tfstate file is stored remotely in an S3 bucket. In addition, we have the creation of a Subnet, AWS Internet Gateway, Route Table and AWS Security Group. Finally, an EC2 instance is created within the Subnet. All resources will be created in the us-east-1 region.
+This project consists of creating a structure in AWS for a auto scaling application. It is made up of the following components:
 - VPC
 - Internet Gateway (IG) 
 - Subnets
@@ -64,31 +65,29 @@ In addition, it is good to have an editor to work with the code like [VSCode] (h
 
 ---
 
+## Solution Architecture
+
+
+
+---
+
 ## How it works
 
 1 - Clone this repository.
 
 ```bash
-git clone git@github.com:diogofiaminghi/terraform-project-01.git
+git clone git@github.com:diogofiaminghi/terraform-application-auto-scaling.git
 ```
 
-2 - Create an S3 bucket on AWS manually.
-
-3 - Open de Project Folder in VSCode
-
-4 - Edit the main.tf file. On line 13, paste the name of your S3 bucket.
+2 - Open console AWS. Go to EC2 >> Network & Security >> Key Pars >> Create Key Pair >> Name = terraform-application-auto-scaling. Keep your key in a safe place and don't share it. You will use it to access the instances. Change permission.
 
 ```bash
-bucket = "your-S3-bucket-name-here"
+chmod 400 terraform-application-auto-scaling.pem
 ```
 
-5 - Open a new bash terminal in VSCode. Create an SSH key pair named 'aws-key'.
+3 - Add the key-name in your .gitignore file.
 
-```bash
-ssh-keygen
-```
-
-6 - You must now configure your AWS Access Keys using the bash terminal.
+4 - You must now configure your AWS Access Keys using the bash terminal.
 
 ```bash
 export AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXX
@@ -97,7 +96,7 @@ export AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXX
 export AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
-7 - Terraform Commands in Project Folder
+5 - Terraform Commands in Project Folder
 ```bash
 terraform init
 ```
@@ -118,16 +117,26 @@ terraform plan -out=plan.out
 terraform apply plan.out
 ```
 
-8 - Now, to prove that everything worked, get the 'vm_ip' in 'output' and let's connect via ssh to the newly created instance.
+6 - Now, to prove that everything worked, we will test the Auto Scaling.
+
+- AWS console >> EC2 >> Instances >> click on WEB instance >> monitoring >> CPU Utilization >> View in metrics >> periodo 10s >> auto-refresching 10s. Repit this for the second WEB instance in another browser tab.
+
+- In another browser tab, open Auto Scaling Grou >> Activity >> Activity history
+
+- In Load Balancer, copy the DNS name >> paste in another browser tab >> the html page must be loaded
+
+- connect via ssh to both web instances
 
 ```bash
-ssh -i aws-key ubuntu@the-public-ip-here
+ssh -i "terraform-application-auto-scaling" ubuntu@the-public-ip-here
 ```
 ```bash
-exit
+sudo stress-ng --cpu 32 --timeout 180 --metrics-brief
 ```
 
-9 - Do not forget to destroy the provisioned structure otherwise you will be able to receive invoices.
+- 
+
+7 - Do not forget to destroy the provisioned structure otherwise you will be able to receive invoices.
 ```bash
 terraform destroy
 ```
