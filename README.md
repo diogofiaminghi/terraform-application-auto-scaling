@@ -128,7 +128,7 @@ terraform apply plan.out
 - connect via ssh to both web instances
 
 ```bash
-ssh -i "terraform-application-auto-scaling" ubuntu@the-public-ip-here
+ssh -i "terraform-application-auto-scaling.pem" ubuntu@the-public-ip-here
 ```
 ```bash
 sudo stress-ng --cpu 32 --timeout 600 --metrics-brief
