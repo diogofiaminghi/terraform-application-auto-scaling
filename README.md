@@ -67,7 +67,7 @@ In addition, it is good to have an editor to work with the code like [VSCode] (h
 
 ## Solution Architecture
 
-
+![Project-Diagram](https://github.com/diogofiaminghi/terraform-application-auto-scaling/blob/10938393ee3062921453eb6dca37b8b700caba1f/terraform-application-auto-scaling.drawio.png)
 
 ---
 
