@@ -5,7 +5,7 @@
 </h1>
 
 <h2 align="center">
-    5 min 39 sec for provisioning on AWS after 'terraform apply' command
+    5 min 16 sec for provisioning on AWS after 'terraform apply' command
 </h2>
 
 <p align="center">
