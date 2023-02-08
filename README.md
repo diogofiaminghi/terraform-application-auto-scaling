@@ -5,7 +5,7 @@
 </h1>
 
 <h2 align="center">
-    AWS - Amazon Web Service
+    5'39" for provisioning on AWS after 'terraform apply' command
 </h2>
 
 <p align="center">
@@ -45,7 +45,7 @@
 
 This project consists of creating a structure in AWS for a auto scaling application. It is made up of the following components:
 - VPC
-- Internet Gateway (IG) 
+- Internet Gateway
 - Subnets
 - Route Tables
 - Security Groups
@@ -131,10 +131,10 @@ terraform apply plan.out
 ssh -i "terraform-application-auto-scaling" ubuntu@the-public-ip-here
 ```
 ```bash
-sudo stress-ng --cpu 32 --timeout 180 --metrics-brief
+sudo stress-ng --cpu 32 --timeout 600 --metrics-brief
 ```
 
-- 
+- observe the number of instances being increased and decreased as stress rises and falls. The test will end in 10 minutes.
 
 7 - Do not forget to destroy the provisioned structure otherwise you will be able to receive invoices.
 ```bash
