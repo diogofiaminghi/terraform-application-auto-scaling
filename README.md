@@ -81,21 +81,29 @@ git clone git@github.com:diogofiaminghi/terraform-application-auto-scaling.git
 
 2 - Open console AWS. 
 
-- IMPORTANT: Make sure you are in "us-east-1" region
+> IMPORTANT: Make sure you are in "us-east-1" region
 
 ![Project-Diagram](https://github.com/diogofiaminghi/terraform-application-auto-scaling/blob/e07ee09f9b5c7bd07793553e25245a5e9c9a76cc/01%20-%20Console%20AWS.PNG)
+
+---
 
 - Go to EC2 
 
 ![Project-Diagram](https://github.com/diogofiaminghi/terraform-application-auto-scaling/blob/e07ee09f9b5c7bd07793553e25245a5e9c9a76cc/02%20-%20Console%20AWS.PNG)
 
+---
+
 - Network & Security >> Key Pairs 
 
 ![Project-Diagram](https://github.com/diogofiaminghi/terraform-application-auto-scaling/blob/e07ee09f9b5c7bd07793553e25245a5e9c9a76cc/03%20-%20Console%20AWS.PNG)
 
+---
+
 - Create Key Pair 
 
 ![Project-Diagram](https://github.com/diogofiaminghi/terraform-application-auto-scaling/blob/e07ee09f9b5c7bd07793553e25245a5e9c9a76cc/04%20-%20Console%20AWS.PNG)
+
+---
 	
 - Name = terraform-application-auto-scaling
 - Key pair type = RSA
@@ -103,12 +111,16 @@ git clone git@github.com:diogofiaminghi/terraform-application-auto-scaling.git
 - Click on "Create key pair"
 
 ![Project-Diagram](https://github.com/diogofiaminghi/terraform-application-auto-scaling/blob/e07ee09f9b5c7bd07793553e25245a5e9c9a76cc/05%20-%20Console%20AWS.PNG)
+
+---
 	
 - The key is downloaded automatically
 
 ![Project-Diagram](https://github.com/diogofiaminghi/terraform-application-auto-scaling/blob/e07ee09f9b5c7bd07793553e25245a5e9c9a76cc/06%20-%20Console%20AWS.PNG)
 
-- IMPORTANT: Copy the key to the same project directory (keep your key in a safe place and don't share it. You will use it to access the instances).
+> IMPORTANT: Copy the key to the same project directory (keep your key in a safe place and don't share it. You will use it to access the instances).
+
+---
 
 - Change permission.
 
