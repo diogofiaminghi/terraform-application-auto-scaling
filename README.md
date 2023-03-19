@@ -79,7 +79,22 @@ In addition, it is good to have an editor to work with the code like [VSCode] (h
 git clone git@github.com:diogofiaminghi/terraform-application-auto-scaling.git
 ```
 
-2 - Open console AWS. Go to EC2 >> Network & Security >> Key Pars >> Create Key Pair >> Name = terraform-application-auto-scaling. Keep your key in a safe place and don't share it. You will use it to access the instances. Change permission.
+2 - Open console AWS. 
+- Go to EC2 
+
+- Network & Security >> Key Pars 
+
+- Create Key Pair 
+	Name = terraform-application-auto-scaling
+	Key pair type = RSA
+	Privete key format = .pem
+	Click on "Create key pair"
+	
+- The key is downloaded automatically
+
+- Copy the key to the same project directory (keep your key in a safe place and don't share it. You will use it to access the instances).
+
+- Change permission.
 
 ```bash
 chmod 400 terraform-application-auto-scaling.pem
